@@ -11,6 +11,7 @@ const app = express()
 const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
 const baseController = require("./controllers/baseController")
+const inventoryRoute = require('./routes/inventoryRoute')
 
 /* ***********************
  * Routes
@@ -38,5 +39,6 @@ const host = process.env.HOST
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
-
+app.use("/inv", inventoryRoute)
 app.get('/', baseController.buildHome)
+
