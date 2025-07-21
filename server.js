@@ -43,6 +43,6 @@ app.listen(port, () => {
 app.use("/inv", inventoryRoute).use(errorHandler)
 app.get('/', baseController.buildHome)
 app.use((req, res, next) => {
-  next(new AppError('Sorry, we appear to have lost that page', 404))
+  next(new AppError('Oh no! There was a crash. maybe try a different route? ', 500))
 }).use(errorHandler);
 
