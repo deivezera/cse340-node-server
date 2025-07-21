@@ -120,11 +120,21 @@ nav ul {
 }
 
 nav ul li {
-  padding: var( --spacing-xs) var(--spacing-sm);
+  padding: var( --spacing-sm) var(--spacing-sm);
   color: var(--color-secondary);
   font-weight: bold;
   font-size: var(--spacing-sm);
   cursor: pointer;
+}
+nav ul li a {
+  color: inherit;
+  text-decoration: inherit;
+  padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+nav ul li a:hover {
+  color: var(--color-dark);
+  background-color: var(--color-bg);
 }
 
 /* Main Content */
@@ -257,4 +267,96 @@ footer {
 
 footer .copyright {
   margin: 0;
+}
+
+/* Inventory view */
+@media screen and (min-width: 768px) {
+  #inv-display li {
+    width: 300px;
+  }
+}
+@media screen and (max-width: 768px) {
+  #inv-display li {
+    width: 270px;
+  }
+}
+@media screen and (max-width: 620px) {
+  #inv-display li {
+    width: 100%;
+  }
+}
+#inv-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  align-items: baseline;
+  list-style-type: none;
+
+  padding: var(--spacing-sm);
+}
+
+#inv-display li {
+  border: solid 1px;
+  border-radius: var(--spacing-xs);
+  overflow: hidden;
+  align-self: stretch;
+}
+
+#inv-display img {
+  width: 100%;
+  height: 180px;
+  object-fit: fill;
+}
+
+#inv-display hr {
+  border: solid 2px;
+}
+
+#inv-display h2 {
+  padding: var(--spacing-sm) var(--spacing-xs);
+  margin-bottom: 0;
+  text-align: center;
+}
+
+#inv-display span {
+  padding: var(--spacing-sm) var(--spacing-xs);
+  display: flex;
+  justify-content: center;
+  font-size: var(--spacing-md);
+}
+
+/* Detail page */
+
+@media screen and (min-width: 768px) {
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+}
+@media screen and (max-width: 768px) {
+  .container {
+    display: grid;
+    gap: var(--spacing-md);
+  }
+}
+
+.car-image {
+  object-fit: fill;
+  width: 100%;
+}
+
+.details h3 {
+  margin-top: 0;
+  font-size: var(--spacing-md);
+}
+
+.details p {
+  font-size: var(--spacing-sm);
+  margin: var(--spacing-lg) 0;
+  padding: 0 var(--spacing-md);
+}
+
+.label {
+  font-weight: bold;
 }
