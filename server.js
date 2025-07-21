@@ -12,7 +12,8 @@ const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require('./routes/inventoryRoute')
-
+const errorHandler = require('./middleware/errorHandler');
+const AppError = require("./utilities/AppError")
 /* ***********************
  * Routes
  *************************/
@@ -39,6 +40,9 @@ const host = process.env.HOST
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
-app.use("/inv", inventoryRoute)
+app.use("/inv", inventoryRoute).use(errorHandler)
 app.get('/', baseController.buildHome)
+app.use((req, res, next) => {
+  next(new AppError('Sorry, we appear to have lost that page', 404))
+}).use(errorHandler);
 

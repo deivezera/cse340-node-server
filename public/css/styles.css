@@ -360,3 +360,12 @@ footer .copyright {
 .label {
   font-weight: bold;
 }
+
+/* error container */
+
+.error-container img {
+  width: 100%;
+}
+.error-container p {
+  font-size: var(--spacing-md);
+}
