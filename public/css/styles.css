@@ -369,3 +369,37 @@ footer .copyright {
 .error-container p {
   font-size: var(--spacing-md);
 }
+
+/* My account */
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-md);
+  background-color: var(--color-dark);
+  color: var(--color-secondary);
+}
+
+.form-container label {
+  margin-top: var(--spacing-sm);
+  font-size: var(--spacing-sm);
+}
+.form-container input {
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-xs);
+  border-radius: var(--spacing-xs);
+}
+.form-container button {
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-lg);
+  border-radius: var(--spacing-sm);
+  align-self: center;
+}
+.form-container span {
+  margin-top: var(--spacing-sm);
+  text-align: center;
+  font-size: var(--spacing-md);
+}
+.form-container a {
+  color: var(--color-secondary);
+}
