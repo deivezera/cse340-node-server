@@ -378,6 +378,7 @@ footer .copyright {
   padding: var(--spacing-md);
   background-color: var(--color-dark);
   color: var(--color-secondary);
+  border: none;
 }
 
 .form-container label {
