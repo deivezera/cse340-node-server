@@ -404,3 +404,6 @@ footer .copyright {
 .form-container a {
   color: var(--color-secondary);
 }
+.form-container li {
+  font-size: var(--spacing-sm);
+}

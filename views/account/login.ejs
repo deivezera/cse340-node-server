@@ -6,9 +6,9 @@
 <form>
   <fieldset class="form-container">
     <label for="email">E-mail:</label>
-    <input name="email" id="email" type="email">
+    <input name="email" id="email" type="email" required>
     <label for="password">Password:</label>
-    <input type="password" name="password" id="password">
+    <input type="password" name="password" id="password" required>
     <%- messages() %>
     <button type="submit">LOGIN</button>
     <span>No account? <a href="/account/register">Sign-up</a></span>
