@@ -6,11 +6,11 @@
 <form action="/account/register" method="post">
   <fieldset class="form-container">
     <label for="account_firstname">First Name:</label>
-    <input name="account_firstname" id="account_firstname" type="text" required>
+    <input name="account_firstname" id="account_firstname" type="text" required value="<%= locals.account_firstname %>">
     <label for="account_lastname">Last Name:</label>
-    <input name="account_lastname" id="account_lastname" type="text" required>
+    <input name="account_lastname" id="account_lastname" type="text" required value="<%= locals.account_lastname %>">
     <label for="account_email">E-mail Address:</label>
-    <input name="account_email" id="account_email" type="email" required placeholder="Enter a valid email address">
+    <input name="account_email" id="account_email" type="email" required placeholder="Enter a valid email address" value="<%= locals.account_email %>">
     <label for="account_password">Password:</label>
     <input name="account_password" id="account_password" type="password" required minlength="12" pattern="(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}">
     <ul>
@@ -19,7 +19,13 @@
       <li>1 capital letter</li> 
       <li>1 special character</li>
     </ul> 
-    <%- messages() %>
+    <% if (errors) { %>
+      <ul class="notice">
+        <% errors.array().forEach(error => { %>
+          <li><%= error.msg %></li>
+        <%  }) %>
+      </ul>
+    <% } %>
     <button type="submit">REGISTER</button>
   </fieldset>
 </form>

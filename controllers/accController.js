@@ -1,6 +1,6 @@
 const utilities = require("../utilities/")
 const accountModel = require("../models/account-model")
-
+const bcrypt = require("bcryptjs")
 /* ****************************************
 *  Deliver login view
 * *************************************** */
@@ -35,15 +35,17 @@ async function buildRegister(req, res, next) {
 *  Process Registration
 * *************************************** */
 async function registerAccount(req, res) {
+  let hashedPassword
   try {
     let nav = await utilities.getNav()
     const { account_firstname, account_lastname, account_email, account_password } = req.body
+    hashedPassword = await bcrypt.hashSync(account_password, 10)
     console.log(req.body)
     const regResult = await accountModel.registerAccount(
       account_firstname,
       account_lastname,
       account_email,
-      account_password
+      hashedPassword
     )
 
     if (regResult) {
