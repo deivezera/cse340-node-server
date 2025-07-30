@@ -1,0 +1,33 @@
+<% if (title) { %>
+<h1><%- title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+<form action="/inv/register/inventory" method="post">
+  <fieldset class="form-container">
+    <label for="inv_make">Make:</label>
+    <input name="inv_make" id="inv_make" type="text" required>
+    <label for="inv_model">Model:</label>
+    <input name="inv_model" id="inv_model" type="text" required>
+    <label for="inv_year">Year:</label>
+    <input name="inv_year" id="inv_year" type="text" required>
+    <label for="inv_description">Description:</label>
+    <input name="inv_description" id="inv_description" type="text" required>
+    <label for="inv_price">Price:</label>
+    <input name="inv_price" id="inv_price" type="text" pattern="^\d+(\.\d{1,2})?$" title="Enter a valid price (e.g., 10, 10.5, or 10.99)" required>
+    <label for="inv_miles">Miles:</label>
+    <input name="inv_miles" id="inv_miles" type="number" required>
+    <label for="inv_color">Color:</label>
+    <input name="inv_color" id="inv_color" type="text" required>
+    <label for="classification_name">Classification:</label>
+    <%- classification %>
+     <% if (errors) { %>
+      <ul class="notice">
+        <% errors.array().forEach(error => { %>
+          <li><%= error.msg %></li>
+        <%  }) %>
+      </ul>
+    <% } %>
+    <button type="submit">REGISTER</button>
+  </fieldset>
+</form>

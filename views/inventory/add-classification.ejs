@@ -1,0 +1,19 @@
+<% if (title) { %>
+<h1><%- title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+<form action="/inv/register/classification" method="post">
+  <fieldset class="form-container">
+    <label for="classification_name">Classification Name:</label>
+    <input name="classification_name" id="classification_name" type="text" required>
+     <% if (errors) { %>
+      <ul class="notice">
+        <% errors.array().forEach(error => { %>
+          <li><%= error.msg %></li>
+        <%  }) %>
+      </ul>
+    <% } %>
+    <button type="submit">REGISTER</button>
+  </fieldset>
+</form>

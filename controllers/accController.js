@@ -40,7 +40,6 @@ async function registerAccount(req, res) {
     let nav = await utilities.getNav()
     const { account_firstname, account_lastname, account_email, account_password } = req.body
     hashedPassword = await bcrypt.hashSync(account_password, 10)
-    console.log(req.body)
     const regResult = await accountModel.registerAccount(
       account_firstname,
       account_lastname,

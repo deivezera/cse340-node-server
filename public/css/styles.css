@@ -390,6 +390,12 @@ footer .copyright {
   padding: var(--spacing-xs);
   border-radius: var(--spacing-xs);
 }
+
+.form-container select {
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-xs);
+  border-radius: var(--spacing-xs);
+}
 .form-container button {
   margin-top: var(--spacing-sm);
   padding: var(--spacing-xs) var(--spacing-lg);
@@ -406,4 +412,14 @@ footer .copyright {
 }
 .form-container li {
   font-size: var(--spacing-sm);
+}
+
+/* Management */
+
+.management-list {
+  font-size: var(--spacing-md);
+}
+
+.management-list li {
+  margin-top: var(--spacing-xs);
 }
