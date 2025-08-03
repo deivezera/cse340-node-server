@@ -16,6 +16,8 @@ const session = require("express-session")
 const pool = require('./database/')
 const routes = require('./routes')
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+const utilities = require("../utilities/")
 
 /* ***********************
  * Routes
@@ -57,6 +59,8 @@ const host = process.env.HOST
     res.locals.messages = require('express-messages')(req, res)
     next()
   })
+  .use(cookieParser())
+  .use(utilities.checkJWTToken)
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
   .use((req, res, next) => {
