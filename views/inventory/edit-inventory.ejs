@@ -3,7 +3,7 @@
 <% } else {
   res.redirect('/')
 } %>
-<form action="/inv/update" method="post">
+<form id="updateForm" action="/inv/update" method="post">
   <fieldset class="form-container">
     <input type="hidden" name="inv_id"
     <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
@@ -37,6 +37,7 @@
         <%  }) %>
       </ul>
     <% } %>
-    <button type="submit">Update Vehicle</button>
+    <button disabled type="submit">Update Vehicle</button>
   </fieldset>
 </form>
+<script src="../../js/inv-update.js"></script>
