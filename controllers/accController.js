@@ -73,9 +73,9 @@ async function registerAccount(req, res) {
 /* ****************************************
 *  Process Login
 * *************************************** */
-async function accountLogin(req, res) {
+async function accountLogin(req, res, next) {
   let nav = await utilities.getNav()
-  const { account_email, account_password } = req.body
+  const { account_email, password } = req.body
   const accountData = await accountModel.getAccountByEmail(account_email)
   if (!accountData) {
     req.flash("notice", "Please check your credentials and try again.")
@@ -88,7 +88,7 @@ async function accountLogin(req, res) {
     return
   }
   try {
-    if (await bcrypt.compare(account_password, accountData.account_password)) {
+    if (await bcrypt.compare(password, accountData.account_password)) {
       delete accountData.account_password
       const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
       if(process.env.NODE_ENV === 'development') {
@@ -96,7 +96,7 @@ async function accountLogin(req, res) {
       } else {
         res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
       }
-      return res.redirect("/account/")
+      return res.redirect("/inv/")
     }
     else {
       req.flash("message notice", "Please check your credentials and try again.")

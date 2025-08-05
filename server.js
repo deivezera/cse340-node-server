@@ -17,7 +17,7 @@ const pool = require('./database/')
 const routes = require('./routes')
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
-const utilities = require("../utilities/")
+const utilities = require("./utilities")
 
 /* ***********************
  * Routes
