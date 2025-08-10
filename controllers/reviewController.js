@@ -10,7 +10,6 @@ async function addReview(req, res, next) {
     const { inv_id, rating, review_text } = req.body
     const account_id = res.locals?.accountData?.account_id
 
-    // Must be logged in
     if (!account_id) {
       req.flash("notice", "Please log in to leave a review.")
       return res.redirect(`/inv/detail/${inv_id}`)
