@@ -1,0 +1,34 @@
+<% if (title) { %>
+<h1><%- title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+<form id="updateForm" action="/account/update" method="post">
+  <h2>Update account information</h2>
+  <fieldset class="form-container">
+    <input type="hidden" name="account_id"
+    <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+    <% } %>>
+    <label for="account_firstname">First name:</label>
+    <input name="account_firstname" id="account_firstname" type="text" required value="<%- locals.account_firstname %>">
+    <label for="account_lastname">Last Name:</label>
+    <input name="account_lastname" id="account_lastname" type="text" required value="<%- locals.account_lastname %>">
+    <label for="account_email">E-mail:</label>
+    <input name="account_email" id="account_email" type="email" required placeholder="Enter a valid email address" required value="<%- locals.account_email %>">
+    <button disabled type="submit">Update Account</button>
+  </fieldset>
+</form>
+<form action="/account/change-password" method="post">
+  <h2>Change password</h2>
+  <fieldset class="form-container">
+    <input type="hidden" name="account_id"
+    <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+    <% } %>>
+    <label for="old_password">First name:</label>
+    <input name="old_password" id="old_password" type="password" required>
+    <label for="account_password">Last Name:</label>
+    <input name="account_password" id="account_password" type="password" required>
+    <button type="submit">Change password</button>
+  </fieldset>
+</form>
+<script src="../../js/inv-update.js"></script>
