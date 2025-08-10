@@ -5,7 +5,6 @@
 <h2>Welcome <%- locals.accountData.account_firstname %></h2>
 <p>You're logged in</p>
 <div><a href="/account/edit">Edit account information</a></div>
-<% console.log(locals.accountData) %>
 <% if(locals.accountData.account_type !== 'Client') { %>
   <h2>Inventory Management</h2>
   <div><a title="click to management" href="/inv/">Inventory management</a></div>

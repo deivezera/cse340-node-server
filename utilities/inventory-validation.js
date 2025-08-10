@@ -34,7 +34,6 @@ validate.checkInventoryData = async (req, res, next) => {
 validate.checkUpdateData = async (req, res, next) => {
   let errors = []
   const body = req.body
-  console.log(body)
   errors = validationResult(req)
   if (!errors.isEmpty()) {
     const classification = await utilities.buildClassificationList(
