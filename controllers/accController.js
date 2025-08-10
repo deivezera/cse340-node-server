@@ -207,7 +207,7 @@ async function updateAccount(req, res, next) {
         account_lastname,
       };
       jwt.verify(
-        req.cookies.refreshToken,
+        req.cookies['refresh-token'],
         process.env.REFRESH_TOKEN_SECRET,
         () => {
           const accessToken = jwt.sign(
