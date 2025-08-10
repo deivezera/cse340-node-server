@@ -14,5 +14,7 @@ router.get("/logout", accController.logout)
 router.get("/", utilities.checkLogin, accController.buildManagement)
 router.get("/edit/", accController.getEditAccount)
 router.post("/update/", regValidate.updateRules(), regValidate.checkUpdateData, accController.updateAccount)
+router.post("/change-password/", regValidate.changePasswordRules(), regValidate.checkUpdateData, accController.changePassword)
+
 
 module.exports = router;

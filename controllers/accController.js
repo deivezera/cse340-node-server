@@ -198,9 +198,9 @@ async function updateAccount(req, res, next) {
     );
     if (updateResult) {
       req.flash("notice", `Your account was successfully updated.`);
-    const { account_type } = res.locals.accountData;
+      const { account_type } = res.locals.accountData;
       const newData = {
-        account_id, 
+        account_id,
         account_type,
         account_firstname,
         account_email,
@@ -260,7 +260,35 @@ async function updateAccount(req, res, next) {
     next(error);
   }
 }
-
+async function changePassword(req, res, next) {
+  try {
+    let nav = await utilities.getNav();
+    const { account_id, account_password } = req.body;
+    hashedPassword = await bcrypt.hashSync(account_password, 10);
+    const updateResult = await accountModel.changePassword(
+      hashedPassword,
+      account_id
+    );
+    if (updateResult) {
+      req.flash("notice", `Your password was successfully updated.`);
+      res.redirect("/account/");
+    } else {
+      req.flash("notice", "Sorry, the update failed.");
+      const { account_firstname, account_lastname, account_email } = req.locals.accountData
+      res.status(501).render("./account/edit-account", {
+        title: "Edit Account",
+        nav,
+        errors: null,
+        account_id,
+        account_firstname,
+        account_lastname,
+        account_email,
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+}
 module.exports = {
   buildLogin,
   buildRegister,
@@ -270,4 +298,5 @@ module.exports = {
   buildManagement,
   getEditAccount,
   updateAccount,
+  changePassword,
 };

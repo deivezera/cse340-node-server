@@ -7,12 +7,12 @@ const utilities = require("../utilities")
 
 router.get("/type/:classificationId", invController.buildByClassificationId);
 router.get("/detail/:inventory_id", invController.buildByInventoryId)
-router.get("/", utilities.checkLogin, invController.buildManagement)
-router.get("/add-classification", invController.buildAddClassification);
-router.get("/add-inventory", invController.buildAddInventory);
+router.get("/", utilities.checkIfIsClient,utilities.checkLogin, invController.buildManagement)
+router.get("/add-classification", utilities.checkIfIsClient, invController.buildAddClassification);
+router.get("/add-inventory", utilities.checkIfIsClient, invController.buildAddInventory);
 router.get("/getInventory/:classification_id", invController.getInventoryJSON)
-router.get("/edit/:inventory_id", invController.getEditInventory)
-router.get("/delete/:inventory_id", invController.getDeleteInventory)
+router.get("/edit/:inventory_id", utilities.checkIfIsClient, invController.getEditInventory)
+router.get("/delete/:inventory_id", utilities.checkIfIsClient, invController.getDeleteInventory)
 router.post("/delete/", invController.deleteInventory)
 router.post("/register/inventory", regInvValidate.registrationRules(), regInvValidate.checkInventoryData, invController.registerInventory);
 router.post("/register/classification", regClassValidate.registrationRules(), regClassValidate.checkRegData, invController.registerClassification);
