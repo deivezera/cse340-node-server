@@ -1,5 +1,6 @@
 const invModel = require("../models/inventory-model");
 const utilities = require("../utilities/");
+const reviewModel = require("../models/review-model");
 const AppError = require("../utilities/AppError");
 const invCont = {};
 
@@ -35,10 +36,14 @@ invCont.buildByInventoryId = async function (req, res, next) {
       const page = await utilities.buildDetailPage(data);
       let nav = await utilities.getNav();
       const title = `${data.inv_year} ${data.inv_make} ${data.inv_model}`;
+      const reviews = await reviewModel.getReviewsByInventoryId(parseInt(inventory_id));
       res.render("./inventory/detail", {
         title,
         nav,
         page,
+        reviews,
+        inv_id: data.inv_id,
+        loggedin: res.locals.loggedin,
       });
     }
   } catch (error) {

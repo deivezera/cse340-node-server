@@ -230,3 +230,16 @@ VALUES   (
     5
   );
 
+-- Reviews table
+CREATE TABLE IF NOT EXISTS public.review (
+  review_id SERIAL PRIMARY KEY,
+  inv_id INT NOT NULL REFERENCES public.inventory(inv_id) ON DELETE CASCADE,
+  account_id INT NOT NULL REFERENCES public.account(account_id) ON DELETE CASCADE,
+  rating INT NOT NULL CHECK (rating BETWEEN 1 AND 5),
+  review_text TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_review_inv_id ON public.review(inv_id);
+CREATE INDEX IF NOT EXISTS idx_review_account_id ON public.review(account_id);
+
